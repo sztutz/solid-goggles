@@ -1,0 +1,10 @@
+C:\Users\Utente\source\repos\solid-goggles\Data Structure Wiki\bin\Debug\Data Structure Wiki.exe.config
+C:\Users\Utente\source\repos\solid-goggles\Data Structure Wiki\bin\Debug\Data Structure Wiki.exe
+C:\Users\Utente\source\repos\solid-goggles\Data Structure Wiki\bin\Debug\Data Structure Wiki.pdb
+C:\Users\Utente\source\repos\solid-goggles\Data Structure Wiki\obj\Debug\Data Structure Wiki.csproj.AssemblyReference.cache
+C:\Users\Utente\source\repos\solid-goggles\Data Structure Wiki\obj\Debug\Data Structure Wiki.csproj.SuggestedBindingRedirects.cache
+C:\Users\Utente\source\repos\solid-goggles\Data Structure Wiki\obj\Debug\Data_Structure_Wiki.Properties.Resources.resources
+C:\Users\Utente\source\repos\solid-goggles\Data Structure Wiki\obj\Debug\Data Structure Wiki.csproj.GenerateResource.cache
+C:\Users\Utente\source\repos\solid-goggles\Data Structure Wiki\obj\Debug\Data Structure Wiki.csproj.CoreCompileInputs.cache
+C:\Users\Utente\source\repos\solid-goggles\Data Structure Wiki\obj\Debug\Data Structure Wiki.exe
+C:\Users\Utente\source\repos\solid-goggles\Data Structure Wiki\obj\Debug\Data Structure Wiki.pdb
