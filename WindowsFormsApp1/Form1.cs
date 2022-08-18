@@ -16,5 +16,35 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonLoad_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listViewDataStructure_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
