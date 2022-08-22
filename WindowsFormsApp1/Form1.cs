@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
-        // 9.2Create an ADD button that will store the information from the 4 text boxes into the 2D array
+        // 9.2 Create an ADD button that will store the information from the 4 text boxes into the 2D array
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             string name = textBoxName.Text;
@@ -52,9 +52,21 @@ namespace WindowsFormsApp1
             textBoxDefinition.Clear();
         }
 
+        // 9.3	Create an EDIT button that will allow the user to modify any information
+        // from the 4 text boxes into the 2D array
         private void buttonEdit_Click(object sender, EventArgs e)
         {
+            string name = textBoxName.Text;
+            string category = textBoxCategory.Text;
+            string structure = textBoxStructure.Text;
+            string definition = textBoxDefinition.Text;
 
+            int index = listViewDataStructure.SelectedIndices[0];
+
+            array.SetValue(name, index, 0);
+            array.SetValue(category, index, 1);
+            array.SetValue(structure, index, 2);
+            array.SetValue(definition, index, 3);
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -77,7 +89,9 @@ namespace WindowsFormsApp1
         private void listViewDataStructure_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = listViewDataStructure.SelectedIndices[0];
-            //textBoxDefinition.Text = listViewDataStructure.Items[index].SubItems[1].Text;
+            textBoxName.Text = array[index, 0];
+            textBoxCategory.Text = array[index, 1];
+            textBoxStructure.Text = array[index, 2];
             textBoxDefinition.Text = array[index, 3];
         }
 
