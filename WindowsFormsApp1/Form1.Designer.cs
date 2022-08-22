@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp1
 {
-    partial class Form1
+    partial class FormDataStructureWiki
     {
         /// <summary>
         /// Required designer variable.
@@ -32,14 +32,23 @@
             this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.listViewDataStructure = new System.Windows.Forms.ListView();
+            this.columnHeaderName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderCategory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonLoad = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxDefinition = new System.Windows.Forms.TextBox();
+            this.labelDefinition = new System.Windows.Forms.Label();
+            this.labelName = new System.Windows.Forms.Label();
+            this.labelCategory = new System.Windows.Forms.Label();
+            this.labelStructure = new System.Windows.Forms.Label();
+            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.textBoxCategory = new System.Windows.Forms.TextBox();
+            this.textBoxStructure = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(289, 108);
+            this.buttonAdd.Location = new System.Drawing.Point(223, 9);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(75, 23);
             this.buttonAdd.TabIndex = 0;
@@ -49,7 +58,7 @@
             // 
             // buttonEdit
             // 
-            this.buttonEdit.Location = new System.Drawing.Point(289, 137);
+            this.buttonEdit.Location = new System.Drawing.Point(304, 9);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(75, 23);
             this.buttonEdit.TabIndex = 1;
@@ -59,7 +68,7 @@
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(289, 166);
+            this.buttonDelete.Location = new System.Drawing.Point(385, 9);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(75, 23);
             this.buttonDelete.TabIndex = 2;
@@ -69,17 +78,32 @@
             // 
             // listViewDataStructure
             // 
+            this.listViewDataStructure.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderName,
+            this.columnHeaderCategory});
+            this.listViewDataStructure.FullRowSelect = true;
             this.listViewDataStructure.HideSelection = false;
-            this.listViewDataStructure.Location = new System.Drawing.Point(452, 108);
+            this.listViewDataStructure.Location = new System.Drawing.Point(223, 38);
             this.listViewDataStructure.Name = "listViewDataStructure";
-            this.listViewDataStructure.Size = new System.Drawing.Size(250, 185);
+            this.listViewDataStructure.Size = new System.Drawing.Size(237, 221);
             this.listViewDataStructure.TabIndex = 3;
             this.listViewDataStructure.UseCompatibleStateImageBehavior = false;
+            this.listViewDataStructure.View = System.Windows.Forms.View.Details;
             this.listViewDataStructure.SelectedIndexChanged += new System.EventHandler(this.listViewDataStructure_SelectedIndexChanged);
+            // 
+            // columnHeaderName
+            // 
+            this.columnHeaderName.Text = "Name";
+            this.columnHeaderName.Width = 100;
+            // 
+            // columnHeaderCategory
+            // 
+            this.columnHeaderCategory.Text = "Category";
+            this.columnHeaderCategory.Width = 100;
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(289, 195);
+            this.buttonSave.Location = new System.Drawing.Point(304, 265);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 4;
@@ -89,7 +113,7 @@
             // 
             // buttonLoad
             // 
-            this.buttonLoad.Location = new System.Drawing.Point(289, 224);
+            this.buttonLoad.Location = new System.Drawing.Point(385, 263);
             this.buttonLoad.Name = "buttonLoad";
             this.buttonLoad.Size = new System.Drawing.Size(75, 23);
             this.buttonLoad.TabIndex = 5;
@@ -97,27 +121,95 @@
             this.buttonLoad.UseVisualStyleBackColor = true;
             this.buttonLoad.Click += new System.EventHandler(this.buttonLoad_Click);
             // 
-            // textBox1
+            // textBoxDefinition
             // 
-            this.textBox1.Location = new System.Drawing.Point(96, 245);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 6;
+            this.textBoxDefinition.Location = new System.Drawing.Point(15, 143);
+            this.textBoxDefinition.Multiline = true;
+            this.textBoxDefinition.Name = "textBoxDefinition";
+            this.textBoxDefinition.Size = new System.Drawing.Size(187, 145);
+            this.textBoxDefinition.TabIndex = 6;
             // 
-            // Form1
+            // labelDefinition
+            // 
+            this.labelDefinition.AutoSize = true;
+            this.labelDefinition.Location = new System.Drawing.Point(13, 127);
+            this.labelDefinition.Name = "labelDefinition";
+            this.labelDefinition.Size = new System.Drawing.Size(54, 13);
+            this.labelDefinition.TabIndex = 7;
+            this.labelDefinition.Text = "Definition:";
+            this.labelDefinition.Click += new System.EventHandler(this.labelDefinition_Click);
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Location = new System.Drawing.Point(12, 9);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(38, 13);
+            this.labelName.TabIndex = 8;
+            this.labelName.Text = "Name:";
+            this.labelName.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // labelCategory
+            // 
+            this.labelCategory.AutoSize = true;
+            this.labelCategory.Location = new System.Drawing.Point(12, 48);
+            this.labelCategory.Name = "labelCategory";
+            this.labelCategory.Size = new System.Drawing.Size(52, 13);
+            this.labelCategory.TabIndex = 9;
+            this.labelCategory.Text = "Category:";
+            // 
+            // labelStructure
+            // 
+            this.labelStructure.AutoSize = true;
+            this.labelStructure.Location = new System.Drawing.Point(13, 87);
+            this.labelStructure.Name = "labelStructure";
+            this.labelStructure.Size = new System.Drawing.Size(53, 13);
+            this.labelStructure.TabIndex = 10;
+            this.labelStructure.Text = "Structure:";
+            // 
+            // textBoxName
+            // 
+            this.textBoxName.Location = new System.Drawing.Point(15, 25);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(187, 20);
+            this.textBoxName.TabIndex = 11;
+            this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
+            // 
+            // textBoxCategory
+            // 
+            this.textBoxCategory.Location = new System.Drawing.Point(15, 64);
+            this.textBoxCategory.Name = "textBoxCategory";
+            this.textBoxCategory.Size = new System.Drawing.Size(187, 20);
+            this.textBoxCategory.TabIndex = 12;
+            // 
+            // textBoxStructure
+            // 
+            this.textBoxStructure.Location = new System.Drawing.Point(15, 103);
+            this.textBoxStructure.Name = "textBoxStructure";
+            this.textBoxStructure.Size = new System.Drawing.Size(187, 20);
+            this.textBoxStructure.TabIndex = 13;
+            // 
+            // FormDataStructureWiki
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(476, 298);
+            this.Controls.Add(this.textBoxStructure);
+            this.Controls.Add(this.textBoxCategory);
+            this.Controls.Add(this.textBoxName);
+            this.Controls.Add(this.labelStructure);
+            this.Controls.Add(this.labelCategory);
+            this.Controls.Add(this.labelName);
+            this.Controls.Add(this.labelDefinition);
+            this.Controls.Add(this.textBoxDefinition);
             this.Controls.Add(this.buttonLoad);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.listViewDataStructure);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.buttonAdd);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "FormDataStructureWiki";
+            this.Text = "Data Structure Wiki";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,7 +223,16 @@
         private System.Windows.Forms.ListView listViewDataStructure;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonLoad;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxDefinition;
+        private System.Windows.Forms.Label labelDefinition;
+        private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.Label labelCategory;
+        private System.Windows.Forms.Label labelStructure;
+        private System.Windows.Forms.TextBox textBoxName;
+        private System.Windows.Forms.TextBox textBoxCategory;
+        private System.Windows.Forms.TextBox textBoxStructure;
+        private System.Windows.Forms.ColumnHeader columnHeaderName;
+        private System.Windows.Forms.ColumnHeader columnHeaderCategory;
     }
 }
 
