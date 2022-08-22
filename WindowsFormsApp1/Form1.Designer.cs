@@ -89,7 +89,7 @@
             this.listViewDataStructure.TabIndex = 3;
             this.listViewDataStructure.UseCompatibleStateImageBehavior = false;
             this.listViewDataStructure.View = System.Windows.Forms.View.Details;
-            this.listViewDataStructure.SelectedIndexChanged += new System.EventHandler(this.listViewDataStructure_SelectedIndexChanged);
+            this.listViewDataStructure.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listViewDataStructure_MouseClick);
             // 
             // columnHeaderName
             // 
