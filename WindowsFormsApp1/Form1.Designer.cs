@@ -46,6 +46,9 @@
             this.textBoxStructure = new System.Windows.Forms.TextBox();
             this.buttonClear = new System.Windows.Forms.Button();
             this.buttonSort = new System.Windows.Forms.Button();
+            this.buttonSearch = new System.Windows.Forms.Button();
+            this.labelSearch = new System.Windows.Forms.Label();
+            this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonAdd
@@ -139,7 +142,6 @@
             this.labelDefinition.Size = new System.Drawing.Size(54, 13);
             this.labelDefinition.TabIndex = 7;
             this.labelDefinition.Text = "Definition:";
-            this.labelDefinition.Click += new System.EventHandler(this.labelDefinition_Click);
             // 
             // labelName
             // 
@@ -149,7 +151,6 @@
             this.labelName.Size = new System.Drawing.Size(38, 13);
             this.labelName.TabIndex = 8;
             this.labelName.Text = "Name:";
-            this.labelName.Click += new System.EventHandler(this.label1_Click);
             // 
             // labelCategory
             // 
@@ -175,7 +176,6 @@
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(238, 20);
             this.textBoxName.TabIndex = 11;
-            this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
             // 
             // textBoxCategory
             // 
@@ -186,9 +186,9 @@
             // 
             // textBoxStructure
             // 
-            this.textBoxStructure.Location = new System.Drawing.Point(16, 104);
+            this.textBoxStructure.Location = new System.Drawing.Point(15, 104);
             this.textBoxStructure.Name = "textBoxStructure";
-            this.textBoxStructure.Size = new System.Drawing.Size(237, 20);
+            this.textBoxStructure.Size = new System.Drawing.Size(238, 20);
             this.textBoxStructure.TabIndex = 13;
             // 
             // buttonClear
@@ -210,11 +210,40 @@
             this.buttonSort.UseVisualStyleBackColor = true;
             this.buttonSort.Click += new System.EventHandler(this.buttonSort_Click);
             // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Location = new System.Drawing.Point(178, 323);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(75, 23);
+            this.buttonSearch.TabIndex = 16;
+            this.buttonSearch.Text = "Search";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
+            // 
+            // labelSearch
+            // 
+            this.labelSearch.AutoSize = true;
+            this.labelSearch.Location = new System.Drawing.Point(12, 349);
+            this.labelSearch.Name = "labelSearch";
+            this.labelSearch.Size = new System.Drawing.Size(75, 13);
+            this.labelSearch.TabIndex = 17;
+            this.labelSearch.Text = "Name Search:";
+            // 
+            // textBoxSearch
+            // 
+            this.textBoxSearch.Location = new System.Drawing.Point(15, 365);
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(238, 20);
+            this.textBoxSearch.TabIndex = 18;
+            // 
             // FormDataStructureWiki
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(544, 416);
+            this.Controls.Add(this.textBoxSearch);
+            this.Controls.Add(this.labelSearch);
+            this.Controls.Add(this.buttonSearch);
             this.Controls.Add(this.buttonSort);
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.textBoxStructure);
@@ -258,6 +287,9 @@
         private System.Windows.Forms.ColumnHeader columnHeaderCategory;
         private System.Windows.Forms.Button buttonClear;
         private System.Windows.Forms.Button buttonSort;
+        private System.Windows.Forms.Button buttonSearch;
+        private System.Windows.Forms.Label labelSearch;
+        private System.Windows.Forms.TextBox textBoxSearch;
     }
 }
 
