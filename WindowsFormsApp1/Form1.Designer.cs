@@ -44,11 +44,13 @@
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.textBoxCategory = new System.Windows.Forms.TextBox();
             this.textBoxStructure = new System.Windows.Forms.TextBox();
+            this.buttonClear = new System.Windows.Forms.Button();
+            this.buttonSort = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(223, 9);
+            this.buttonAdd.Location = new System.Drawing.Point(16, 294);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(75, 23);
             this.buttonAdd.TabIndex = 0;
@@ -58,7 +60,7 @@
             // 
             // buttonEdit
             // 
-            this.buttonEdit.Location = new System.Drawing.Point(304, 9);
+            this.buttonEdit.Location = new System.Drawing.Point(97, 294);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(75, 23);
             this.buttonEdit.TabIndex = 1;
@@ -68,7 +70,7 @@
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(385, 9);
+            this.buttonDelete.Location = new System.Drawing.Point(178, 294);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(75, 23);
             this.buttonDelete.TabIndex = 2;
@@ -83,9 +85,9 @@
             this.columnHeaderCategory});
             this.listViewDataStructure.FullRowSelect = true;
             this.listViewDataStructure.HideSelection = false;
-            this.listViewDataStructure.Location = new System.Drawing.Point(223, 38);
+            this.listViewDataStructure.Location = new System.Drawing.Point(259, 25);
             this.listViewDataStructure.Name = "listViewDataStructure";
-            this.listViewDataStructure.Size = new System.Drawing.Size(237, 221);
+            this.listViewDataStructure.Size = new System.Drawing.Size(237, 263);
             this.listViewDataStructure.TabIndex = 3;
             this.listViewDataStructure.UseCompatibleStateImageBehavior = false;
             this.listViewDataStructure.View = System.Windows.Forms.View.Details;
@@ -103,7 +105,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(304, 265);
+            this.buttonSave.Location = new System.Drawing.Point(340, 294);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 4;
@@ -113,7 +115,7 @@
             // 
             // buttonLoad
             // 
-            this.buttonLoad.Location = new System.Drawing.Point(385, 263);
+            this.buttonLoad.Location = new System.Drawing.Point(421, 294);
             this.buttonLoad.Name = "buttonLoad";
             this.buttonLoad.Size = new System.Drawing.Size(75, 23);
             this.buttonLoad.TabIndex = 5;
@@ -126,7 +128,7 @@
             this.textBoxDefinition.Location = new System.Drawing.Point(15, 143);
             this.textBoxDefinition.Multiline = true;
             this.textBoxDefinition.Name = "textBoxDefinition";
-            this.textBoxDefinition.Size = new System.Drawing.Size(187, 145);
+            this.textBoxDefinition.Size = new System.Drawing.Size(238, 145);
             this.textBoxDefinition.TabIndex = 6;
             // 
             // labelDefinition
@@ -171,7 +173,7 @@
             // 
             this.textBoxName.Location = new System.Drawing.Point(15, 25);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(187, 20);
+            this.textBoxName.Size = new System.Drawing.Size(238, 20);
             this.textBoxName.TabIndex = 11;
             this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
             // 
@@ -179,21 +181,42 @@
             // 
             this.textBoxCategory.Location = new System.Drawing.Point(15, 64);
             this.textBoxCategory.Name = "textBoxCategory";
-            this.textBoxCategory.Size = new System.Drawing.Size(187, 20);
+            this.textBoxCategory.Size = new System.Drawing.Size(238, 20);
             this.textBoxCategory.TabIndex = 12;
             // 
             // textBoxStructure
             // 
-            this.textBoxStructure.Location = new System.Drawing.Point(15, 103);
+            this.textBoxStructure.Location = new System.Drawing.Point(16, 104);
             this.textBoxStructure.Name = "textBoxStructure";
-            this.textBoxStructure.Size = new System.Drawing.Size(187, 20);
+            this.textBoxStructure.Size = new System.Drawing.Size(237, 20);
             this.textBoxStructure.TabIndex = 13;
+            // 
+            // buttonClear
+            // 
+            this.buttonClear.Location = new System.Drawing.Point(16, 323);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(75, 23);
+            this.buttonClear.TabIndex = 14;
+            this.buttonClear.Text = "Clear";
+            this.buttonClear.UseVisualStyleBackColor = true;
+            // 
+            // buttonSort
+            // 
+            this.buttonSort.Location = new System.Drawing.Point(97, 323);
+            this.buttonSort.Name = "buttonSort";
+            this.buttonSort.Size = new System.Drawing.Size(75, 23);
+            this.buttonSort.TabIndex = 15;
+            this.buttonSort.Text = "Sort";
+            this.buttonSort.UseVisualStyleBackColor = true;
+            this.buttonSort.Click += new System.EventHandler(this.buttonSort_Click);
             // 
             // FormDataStructureWiki
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(476, 298);
+            this.ClientSize = new System.Drawing.Size(544, 416);
+            this.Controls.Add(this.buttonSort);
+            this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.textBoxStructure);
             this.Controls.Add(this.textBoxCategory);
             this.Controls.Add(this.textBoxName);
@@ -233,6 +256,8 @@
         private System.Windows.Forms.TextBox textBoxStructure;
         private System.Windows.Forms.ColumnHeader columnHeaderName;
         private System.Windows.Forms.ColumnHeader columnHeaderCategory;
+        private System.Windows.Forms.Button buttonClear;
+        private System.Windows.Forms.Button buttonSort;
     }
 }
 
