@@ -10,9 +10,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using System.IO;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.AxHost;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Application = System.Windows.Forms.Application;
 
 namespace WindowsFormsApp1
 {
@@ -23,6 +25,7 @@ namespace WindowsFormsApp1
         private static int rows = 12;
         private string[,] array = new string[rows, columns];
         private int pointer = 0;
+        private string defaultFileName = "default.bin";
         public FormDataStructureWiki()
         {
             InitializeComponent();
@@ -36,7 +39,7 @@ namespace WindowsFormsApp1
             string structure = textBoxStructure.Text;
             string definition = textBoxDefinition.Text;
 
-            if (pointer >= 11)
+            if (pointer >= rows)
             {
                 MessageBox.Show("The data structure array is full. Please delete a data structure to make space");
             }
@@ -107,10 +110,14 @@ namespace WindowsFormsApp1
             textBoxStructure.Clear();
             textBoxDefinition.Clear();
         }
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            clearTextBoxes();
+        }
         // 9.6 Write the code for a Bubble Sort method to sort the 2D array by Name ascending,
         // ensure you use a separate swap method that passes the array element to be swapped
         // (do not use any built-in array methods)
-        private void buttonSort_Click(object sender, EventArgs e)
+        private void sort()
         {
             bool swapped;
 
@@ -136,6 +143,10 @@ namespace WindowsFormsApp1
                 if (swapped == false)
                     break;
             }
+        }
+        private void buttonSort_Click(object sender, EventArgs e)
+        {
+            sort();
             updateListViewDataStructure();
         }
         // 9.7	Write the code for a Binary Search for the Name in the 2D array and display the information
@@ -143,20 +154,34 @@ namespace WindowsFormsApp1
         // the search textbox(do not use any built-in array methods)
         private void buttonSearch_Click(object sender, EventArgs e)
         {
+            sort();
             string searchWord = textBoxSearch.Text;
-            int mid = rows / 2;
-            int comparisonValue = String.Compare(searchWord, array[mid, 0], StringComparison.OrdinalIgnoreCase);
-            if (comparisonValue == 0)
+            int low = 0;
+            int high = pointer;
+            int mid;
+            bool flag = false;
+            while (flag == false)
             {
-                displayInformation(mid);
-            }
-            else if (comparisonValue < 0)
-            {
-
-            }
-            else
-            {
-
+                if (high == low)
+                {
+                    MessageBox.Show("Not found");
+                    flag = true;
+                }
+                mid = (low + high) / 2;
+                int comparisonValue = String.Compare(searchWord, array[mid, 0], StringComparison.OrdinalIgnoreCase);
+                if (comparisonValue == 0)
+                {
+                    displayInformation(mid);
+                    flag = true;
+                }
+                else if (comparisonValue < 0)
+                {
+                    low = mid + 1;
+                }
+                else if (comparisonValue > 0)
+                {
+                    high = mid + 1;
+                }
             }
         }
         // 9.8	Create a display method that will show the following information in a ListView: Name and Category
@@ -189,14 +214,88 @@ namespace WindowsFormsApp1
         // alternative file. Use a file stream and BinaryWriter to create the file
         private void buttonSave_Click(object sender, EventArgs e)
         {
-
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "bin file|=.bin";
+            saveFileDialog.Title = "Save a BIN file";
+            saveFileDialog.InitialDirectory = Application.StartupPath;
+            saveFileDialog.DefaultExt = "bin";
+            saveFileDialog.ShowDialog();
+            string fileName = saveFileDialog.FileName;
+            if(saveFileDialog.FileName != "")
+            {
+                saveFile(fileName);
+            }
+            else
+            {
+                saveFile(defaultFileName);
+            }
+        }
+        private void saveFile(string saveFileName)
+        {
+            try
+            {
+                using (Stream stream = File.Open(saveFileName, FileMode.Create))
+                {
+                    using (var writer = new BinaryWriter(stream, Encoding.UTF8, false))
+                    {
+                        for (int x = 0; x < rows; x++)
+                        {
+                            for (int y = 0; y < columns; y++)
+                            {
+                                if (array[x, y] != null)
+                                {
+                                    writer.Write(array[x, y]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch(IOException ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
         // 9.11	Create a LOAD button that will read the information from a binary file called definitions.dat
         // into the 2D array, ensure the user has the option to select an alternative file. Use a file stream
         // and BinaryReader to complete this task
         private void buttonLoad_Click(object sender, EventArgs e)
         {
-
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = Application.StartupPath;
+            openFileDialog.Filter = "BIN FILES|*.bin";
+            openFileDialog.Title = "Open a BIN file";
+            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                openFile(openFileDialog.FileName);
+            }
+        }
+        private void openFile(string openFileName)
+        {
+            try
+            {
+                using (Stream stream = File.Open(openFileName, FileMode.Open))
+                {
+                    using (var reader = new BinaryReader(stream, Encoding.UTF8, false))
+                    {
+                        int x = 0;
+                        Array.Clear(array, 0, array.Length);
+                        while (stream.Position < stream.Length)
+                        {
+                            for (int y = 0; y < columns; y++)
+                            {
+                                array[x, y] = reader.ReadString();
+                            }
+                            x++;
+                        }
+                    }
+                }
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            updateListViewDataStructure();
         }
         // Swaps item in array at row with item in array at row + 1
         private void swap(int row)
