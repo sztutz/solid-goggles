@@ -56,7 +56,7 @@
             this.buttonAdd.Location = new System.Drawing.Point(16, 294);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(75, 23);
-            this.buttonAdd.TabIndex = 0;
+            this.buttonAdd.TabIndex = 4;
             this.buttonAdd.Text = "Add";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
@@ -66,7 +66,7 @@
             this.buttonEdit.Location = new System.Drawing.Point(97, 294);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(75, 23);
-            this.buttonEdit.TabIndex = 1;
+            this.buttonEdit.TabIndex = 5;
             this.buttonEdit.Text = "Edit";
             this.buttonEdit.UseVisualStyleBackColor = true;
             this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
@@ -76,7 +76,7 @@
             this.buttonDelete.Location = new System.Drawing.Point(178, 294);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(75, 23);
-            this.buttonDelete.TabIndex = 2;
+            this.buttonDelete.TabIndex = 6;
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
@@ -91,7 +91,6 @@
             this.listViewDataStructure.Location = new System.Drawing.Point(259, 25);
             this.listViewDataStructure.Name = "listViewDataStructure";
             this.listViewDataStructure.Size = new System.Drawing.Size(237, 263);
-            this.listViewDataStructure.TabIndex = 3;
             this.listViewDataStructure.UseCompatibleStateImageBehavior = false;
             this.listViewDataStructure.View = System.Windows.Forms.View.Details;
             this.listViewDataStructure.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listViewDataStructure_MouseClick);
@@ -111,7 +110,7 @@
             this.buttonSave.Location = new System.Drawing.Point(340, 294);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
-            this.buttonSave.TabIndex = 4;
+            this.buttonSave.TabIndex = 11;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
@@ -121,7 +120,7 @@
             this.buttonLoad.Location = new System.Drawing.Point(421, 294);
             this.buttonLoad.Name = "buttonLoad";
             this.buttonLoad.Size = new System.Drawing.Size(75, 23);
-            this.buttonLoad.TabIndex = 5;
+            this.buttonLoad.TabIndex = 12;
             this.buttonLoad.Text = "Load";
             this.buttonLoad.UseVisualStyleBackColor = true;
             this.buttonLoad.Click += new System.EventHandler(this.buttonLoad_Click);
@@ -132,7 +131,7 @@
             this.textBoxDefinition.Multiline = true;
             this.textBoxDefinition.Name = "textBoxDefinition";
             this.textBoxDefinition.Size = new System.Drawing.Size(238, 145);
-            this.textBoxDefinition.TabIndex = 6;
+            this.textBoxDefinition.TabIndex = 3;
             // 
             // labelDefinition
             // 
@@ -140,7 +139,6 @@
             this.labelDefinition.Location = new System.Drawing.Point(13, 127);
             this.labelDefinition.Name = "labelDefinition";
             this.labelDefinition.Size = new System.Drawing.Size(54, 13);
-            this.labelDefinition.TabIndex = 7;
             this.labelDefinition.Text = "Definition:";
             // 
             // labelName
@@ -149,7 +147,6 @@
             this.labelName.Location = new System.Drawing.Point(12, 9);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(38, 13);
-            this.labelName.TabIndex = 8;
             this.labelName.Text = "Name:";
             // 
             // labelCategory
@@ -158,7 +155,6 @@
             this.labelCategory.Location = new System.Drawing.Point(12, 48);
             this.labelCategory.Name = "labelCategory";
             this.labelCategory.Size = new System.Drawing.Size(52, 13);
-            this.labelCategory.TabIndex = 9;
             this.labelCategory.Text = "Category:";
             // 
             // labelStructure
@@ -167,7 +163,6 @@
             this.labelStructure.Location = new System.Drawing.Point(13, 87);
             this.labelStructure.Name = "labelStructure";
             this.labelStructure.Size = new System.Drawing.Size(53, 13);
-            this.labelStructure.TabIndex = 10;
             this.labelStructure.Text = "Structure:";
             // 
             // textBoxName
@@ -175,28 +170,28 @@
             this.textBoxName.Location = new System.Drawing.Point(15, 25);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(238, 20);
-            this.textBoxName.TabIndex = 11;
+            this.textBoxName.TabIndex = 0;
             // 
             // textBoxCategory
             // 
             this.textBoxCategory.Location = new System.Drawing.Point(15, 64);
             this.textBoxCategory.Name = "textBoxCategory";
             this.textBoxCategory.Size = new System.Drawing.Size(238, 20);
-            this.textBoxCategory.TabIndex = 12;
+            this.textBoxCategory.TabIndex = 1;
             // 
             // textBoxStructure
             // 
             this.textBoxStructure.Location = new System.Drawing.Point(15, 104);
             this.textBoxStructure.Name = "textBoxStructure";
             this.textBoxStructure.Size = new System.Drawing.Size(238, 20);
-            this.textBoxStructure.TabIndex = 13;
+            this.textBoxStructure.TabIndex = 2;
             // 
             // buttonClear
             // 
             this.buttonClear.Location = new System.Drawing.Point(16, 323);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(75, 23);
-            this.buttonClear.TabIndex = 14;
+            this.buttonClear.TabIndex = 7;
             this.buttonClear.Text = "Clear";
             this.buttonClear.UseVisualStyleBackColor = true;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
@@ -206,7 +201,7 @@
             this.buttonSort.Location = new System.Drawing.Point(97, 323);
             this.buttonSort.Name = "buttonSort";
             this.buttonSort.Size = new System.Drawing.Size(75, 23);
-            this.buttonSort.TabIndex = 15;
+            this.buttonSort.TabIndex = 8;
             this.buttonSort.Text = "Sort";
             this.buttonSort.UseVisualStyleBackColor = true;
             this.buttonSort.Click += new System.EventHandler(this.buttonSort_Click);
@@ -216,7 +211,7 @@
             this.buttonSearch.Location = new System.Drawing.Point(178, 323);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(75, 23);
-            this.buttonSearch.TabIndex = 16;
+            this.buttonSearch.TabIndex = 9;
             this.buttonSearch.Text = "Search";
             this.buttonSearch.UseVisualStyleBackColor = true;
             this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
@@ -227,7 +222,6 @@
             this.labelSearch.Location = new System.Drawing.Point(12, 349);
             this.labelSearch.Name = "labelSearch";
             this.labelSearch.Size = new System.Drawing.Size(75, 13);
-            this.labelSearch.TabIndex = 17;
             this.labelSearch.Text = "Name Search:";
             // 
             // textBoxSearch
@@ -235,7 +229,7 @@
             this.textBoxSearch.Location = new System.Drawing.Point(15, 365);
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.Size = new System.Drawing.Size(238, 20);
-            this.textBoxSearch.TabIndex = 18;
+            this.textBoxSearch.TabIndex = 10;
             // 
             // FormDataStructureWiki
             // 
