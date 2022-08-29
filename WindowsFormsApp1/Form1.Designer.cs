@@ -91,6 +91,7 @@
             this.listViewDataStructure.Location = new System.Drawing.Point(259, 25);
             this.listViewDataStructure.Name = "listViewDataStructure";
             this.listViewDataStructure.Size = new System.Drawing.Size(237, 263);
+            this.listViewDataStructure.TabIndex = 16;
             this.listViewDataStructure.UseCompatibleStateImageBehavior = false;
             this.listViewDataStructure.View = System.Windows.Forms.View.Details;
             this.listViewDataStructure.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listViewDataStructure_MouseClick);
@@ -98,12 +99,12 @@
             // columnHeaderName
             // 
             this.columnHeaderName.Text = "Name";
-            this.columnHeaderName.Width = 100;
+            this.columnHeaderName.Width = 120;
             // 
             // columnHeaderCategory
             // 
             this.columnHeaderCategory.Text = "Category";
-            this.columnHeaderCategory.Width = 100;
+            this.columnHeaderCategory.Width = 120;
             // 
             // buttonSave
             // 
@@ -139,6 +140,7 @@
             this.labelDefinition.Location = new System.Drawing.Point(13, 127);
             this.labelDefinition.Name = "labelDefinition";
             this.labelDefinition.Size = new System.Drawing.Size(54, 13);
+            this.labelDefinition.TabIndex = 15;
             this.labelDefinition.Text = "Definition:";
             // 
             // labelName
@@ -147,6 +149,7 @@
             this.labelName.Location = new System.Drawing.Point(12, 9);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(38, 13);
+            this.labelName.TabIndex = 14;
             this.labelName.Text = "Name:";
             // 
             // labelCategory
@@ -155,6 +158,7 @@
             this.labelCategory.Location = new System.Drawing.Point(12, 48);
             this.labelCategory.Name = "labelCategory";
             this.labelCategory.Size = new System.Drawing.Size(52, 13);
+            this.labelCategory.TabIndex = 13;
             this.labelCategory.Text = "Category:";
             // 
             // labelStructure
@@ -163,6 +167,7 @@
             this.labelStructure.Location = new System.Drawing.Point(13, 87);
             this.labelStructure.Name = "labelStructure";
             this.labelStructure.Size = new System.Drawing.Size(53, 13);
+            this.labelStructure.TabIndex = 12;
             this.labelStructure.Text = "Structure:";
             // 
             // textBoxName
@@ -222,6 +227,7 @@
             this.labelSearch.Location = new System.Drawing.Point(12, 349);
             this.labelSearch.Name = "labelSearch";
             this.labelSearch.Size = new System.Drawing.Size(75, 13);
+            this.labelSearch.TabIndex = 11;
             this.labelSearch.Text = "Name Search:";
             // 
             // textBoxSearch
@@ -235,7 +241,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(544, 416);
+            this.ClientSize = new System.Drawing.Size(509, 416);
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.labelSearch);
             this.Controls.Add(this.buttonSearch);

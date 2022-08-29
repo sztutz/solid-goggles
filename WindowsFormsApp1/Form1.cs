@@ -183,11 +183,6 @@ namespace WindowsFormsApp1
             bool flag = false;
             while (flag == false)
             {
-                if (high == low)
-                {
-                    MessageBox.Show("Not found");
-                    flag = true;
-                }
                 mid = (low + high) / 2;
                 int comparisonValue = String.Compare(searchWord, array[mid, 0], StringComparison.OrdinalIgnoreCase);
                 if (comparisonValue == 0)
@@ -203,7 +198,14 @@ namespace WindowsFormsApp1
                 {
                     high = mid + 1;
                 }
+                else if (high == low)
+                {
+                    MessageBox.Show("Not found");
+                    flag = true;
+                }
             }
+            textBoxSearch.Clear();
+            textBoxSearch.Focus();
         }
         #endregion
         // 9.8	Create a display method that will show the following information in a ListView: Name and Category
@@ -242,8 +244,8 @@ namespace WindowsFormsApp1
         private void buttonSave_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "bin file|=.bin";
-            saveFileDialog.Title = "Save a BIN file";
+            saveFileDialog.Filter = "bin file|*.bin";
+            saveFileDialog.Title = "Save a bin file";
             saveFileDialog.InitialDirectory = Application.StartupPath;
             saveFileDialog.DefaultExt = "bin";
             saveFileDialog.ShowDialog();
@@ -293,8 +295,8 @@ namespace WindowsFormsApp1
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = Application.StartupPath;
-            openFileDialog.Filter = "BIN FILES|*.bin";
-            openFileDialog.Title = "Open a BIN file";
+            openFileDialog.Filter = "bin files|*.bin";
+            openFileDialog.Title = "Open a bin file";
             if(openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 openFile(openFileDialog.FileName);
@@ -319,7 +321,7 @@ namespace WindowsFormsApp1
                             x++;
                         }
                         // Load pointer
-                        reader.ReadInt32();
+                        pointer = reader.ReadInt32();
                     }
                 }
             }
