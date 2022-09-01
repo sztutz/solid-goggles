@@ -180,28 +180,35 @@ namespace WindowsFormsApp1
             int low = 0;
             int high = pointer;
             int mid;
-            bool flag = false;
-            while (flag == false)
+            bool search = true;
+            int comparisonValue;
+            while (search)
             {
-                mid = (low + high) / 2;
-                int comparisonValue = String.Compare(searchWord, array[mid, 0], StringComparison.OrdinalIgnoreCase);
-                if (comparisonValue == 0)
+                if (low == high)
                 {
-                    displayInformation(mid);
-                    flag = true;
-                }
-                else if (comparisonValue < 0)
-                {
-                    low = mid + 1;
-                }
-                else if (comparisonValue > 0)
-                {
-                    high = mid + 1;
-                }
-                else if (high == low)
-                {
+                    search = false;
                     MessageBox.Show("Not found");
-                    flag = true;
+                }
+                else
+                {
+                    mid = (low + high) / 2;
+                    comparisonValue = String.Compare(searchWord, array[mid, 0], StringComparison.OrdinalIgnoreCase);
+                    if (comparisonValue == 0)
+                    {
+                        // Word is found
+                        displayInformation(mid);
+                        search = false;
+                    }
+                    else if (comparisonValue < 0)
+                    {
+                        // Word is on the left side
+                        high = mid;
+                    }
+                    else
+                    {
+                        // Word is on the right side
+                        low = mid;
+                    }
                 }
             }
             textBoxSearch.Clear();
