@@ -29,6 +29,7 @@ namespace WindowsFormsApp1
         private int pointer = 0;
         private string defaultFileName = "default.bin";
         #endregion
+
         public FormDataStructureWiki()
         {
             InitializeComponent();
@@ -65,9 +66,11 @@ namespace WindowsFormsApp1
                 pointer++;
                 updateListViewDataStructure();
                 clearTextBoxes();
+                toolStripStatusLabel.Text = name + " added";
             }
         }
         #endregion
+
         // 9.3	Create an EDIT button that will allow the user to modify any information
         // from the 4 text boxes in to the 2D array
         #region Edit
@@ -89,35 +92,43 @@ namespace WindowsFormsApp1
             clearTextBoxes();
         }
         #endregion
+
         // 9.4 Create a DELETE button that removes all the information from a single entry
         // of the array; the user must be promted before the final deletion occurs
         #region Delete
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            try
+
+            if (listViewDataStructure.SelectedIndices.Count == 1)
             {
-                int index = listViewDataStructure.SelectedIndices[0];
-
-                array.SetValue(null, index, 0);
-                array.SetValue(null, index, 1);
-                array.SetValue(null, index, 2);
-                array.SetValue(null, index, 3);
-                // Bumping all the items up the array to remove the deleted space
-                for (int i = index; i < rows - 1; i++)
+                var result = MessageBox.Show("Do you want to delete this item?", "Delete",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
                 {
-                    swap(i);
-                }
+                    int index = listViewDataStructure.SelectedIndices[0];
 
-                pointer--;
-                updateListViewDataStructure();
-                clearTextBoxes();
+                    array.SetValue(null, index, 0);
+                    array.SetValue(null, index, 1);
+                    array.SetValue(null, index, 2);
+                    array.SetValue(null, index, 3);
+                    // Bumping all the items up the array to remove the deleted space
+                    for (int i = index; i < rows - 1; i++)
+                    {
+                        swap(i);
+                    }
+
+                    pointer--;
+                    updateListViewDataStructure();
+                    clearTextBoxes();
+                }
             }
-            catch
+            else
             {
                 MessageBox.Show("There is no item selected to delete");
             }
         }
         #endregion
+
         // 9.5 Create a CLEAR method to clear the four text boxes so a new definition can be added
         #region Clear
         private void clearTextBoxes()
@@ -132,6 +143,7 @@ namespace WindowsFormsApp1
             clearTextBoxes();
         }
         #endregion
+
         // 9.6 Write the code for a Bubble Sort method to sort the 2D array by Name ascending,
         // ensure you use a separate swap method that passes the array element to be swapped
         // (do not use any built-in array methods)
@@ -169,6 +181,7 @@ namespace WindowsFormsApp1
             updateListViewDataStructure();
         }
         #endregion
+
         // 9.7	Write the code for a Binary Search for the Name in the 2D array and display the information
         // in the other textboxes when found, add suitable feedback if the search in not successful and clear
         // the search textbox(do not use any built-in array methods)
@@ -215,6 +228,7 @@ namespace WindowsFormsApp1
             textBoxSearch.Focus();
         }
         #endregion
+
         // 9.8	Create a display method that will show the following information in a ListView: Name and Category
         #region Display list view
         private void updateListViewDataStructure()
@@ -228,6 +242,7 @@ namespace WindowsFormsApp1
             }
         }
         #endregion
+
         // 9.9	Create a method so the user can select a definition (Name) from the
         // ListView and all the information is displayed in the appropriate Textboxes
         #region Display text boxes
@@ -244,6 +259,7 @@ namespace WindowsFormsApp1
             textBoxDefinition.Text = array[index, 3];
         }
         #endregion
+
         // 9.10	Create a SAVE button so the information from the 2D array can be written into a binary file
         // called definitions.dat which is sorted by Name, ensure the user has the option to select an
         // alternative file. Use a file stream and BinaryWriter to create the file
@@ -294,6 +310,7 @@ namespace WindowsFormsApp1
             }
         }
         #endregion
+
         // 9.11	Create a LOAD button that will read the information from a binary file called definitions.dat
         // into the 2D array, ensure the user has the option to select an alternative file. Use a file stream
         // and BinaryReader to complete this task
@@ -339,6 +356,7 @@ namespace WindowsFormsApp1
             updateListViewDataStructure();
         }
         #endregion
+
         // Swaps item in array at row with item in array at row + 1
         #region Swap
         private void swap(int row)
@@ -352,5 +370,12 @@ namespace WindowsFormsApp1
             }
         }
         #endregion
+
+        private void textBoxName_DoubleClick(object sender, EventArgs e)
+        {
+            clearTextBoxes();
+            textBoxName.Focus();
+        }
+
     }
 }
