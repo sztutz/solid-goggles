@@ -15,6 +15,7 @@ using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.AxHost;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Application = System.Windows.Forms.Application;
+using ToolTip = System.Windows.Forms.ToolTip;
 
 namespace WindowsFormsApp1
 {
@@ -28,6 +29,7 @@ namespace WindowsFormsApp1
         // Pointer variable points to which row, the next item should be added within the array
         private int pointer = 0;
         private string defaultFileName = "default.bin";
+        private string openFileName;
         #endregion
 
         public FormDataStructureWiki()
@@ -46,7 +48,8 @@ namespace WindowsFormsApp1
             // Checking if there is space in the array
             if (pointer >= rows)
             {
-                MessageBox.Show("The data structure array is full. Please delete a data structure to make space");
+                MessageBox.Show("The data structure list is full. Please delete a record to make space");
+                toolStripStatusLabel.Text = "Full list";
             }
             // All text boxes are must contain a value, for an item to be added
             else if (string.IsNullOrEmpty(name) ||
@@ -54,7 +57,8 @@ namespace WindowsFormsApp1
                      string.IsNullOrEmpty(structure) ||
                      string.IsNullOrEmpty(definition))
             {
-                MessageBox.Show("All text boxes must contain a value to add a data structure");
+                MessageBox.Show("All text boxes must contain a value to add a record");
+                toolStripStatusLabel.Text = string.Empty;
             }
             else
             {
@@ -76,20 +80,28 @@ namespace WindowsFormsApp1
         #region Edit
         private void buttonEdit_Click(object sender, EventArgs e)
         {
-            int index = listViewDataStructure.SelectedIndices[0];
-            // Taking input from the text boxes
-            string name = textBoxName.Text;
-            string category = textBoxCategory.Text;
-            string structure = textBoxStructure.Text;
-            string definition = textBoxDefinition.Text;
-            // Entering the data in to the array
-            array.SetValue(name, index, 0);
-            array.SetValue(category, index, 1);
-            array.SetValue(structure, index, 2);
-            array.SetValue(definition, index, 3);
+            if (listViewDataStructure.SelectedIndices.Count == 1)
+            {
+                int index = listViewDataStructure.SelectedIndices[0];
+                // Taking input from the text boxes
+                string name = textBoxName.Text;
+                string category = textBoxCategory.Text;
+                string structure = textBoxStructure.Text;
+                string definition = textBoxDefinition.Text;
+                // Entering the data in to the array
+                array.SetValue(name, index, 0);
+                array.SetValue(category, index, 1);
+                array.SetValue(structure, index, 2);
+                array.SetValue(definition, index, 3);
 
-            updateListViewDataStructure();
-            clearTextBoxes();
+                updateListViewDataStructure();
+                clearTextBoxes();
+                toolStripStatusLabel.Text = name + " edited";
+            }
+            else
+            {
+                MessageBox.Show("There is no record selected to edit");
+            }
         }
         #endregion
 
@@ -107,10 +119,13 @@ namespace WindowsFormsApp1
                 {
                     int index = listViewDataStructure.SelectedIndices[0];
 
+                    string name = array[index, 0];
+
                     array.SetValue(null, index, 0);
                     array.SetValue(null, index, 1);
                     array.SetValue(null, index, 2);
                     array.SetValue(null, index, 3);
+
                     // Bumping all the items up the array to remove the deleted space
                     for (int i = index; i < rows - 1; i++)
                     {
@@ -120,6 +135,7 @@ namespace WindowsFormsApp1
                     pointer--;
                     updateListViewDataStructure();
                     clearTextBoxes();
+                    toolStripStatusLabel.Text = name + " deleted";
                 }
             }
             else
@@ -131,12 +147,15 @@ namespace WindowsFormsApp1
 
         // 9.5 Create a CLEAR method to clear the four text boxes so a new definition can be added
         #region Clear
+        // Also clears the search text box
         private void clearTextBoxes()
         {
             textBoxName.Clear();
             textBoxCategory.Clear();
             textBoxStructure.Clear();
             textBoxDefinition.Clear();
+            textBoxSearch.Clear();
+            toolStripStatusLabel.Text = "Cleared";
         }
         private void buttonClear_Click(object sender, EventArgs e)
         {
@@ -177,8 +196,16 @@ namespace WindowsFormsApp1
         }
         private void buttonSort_Click(object sender, EventArgs e)
         {
-            sort();
-            updateListViewDataStructure();
+            if (pointer == 0)
+            {
+                toolStripStatusLabel.Text = "No records to sort";
+            }
+            else
+            {
+                sort();
+                updateListViewDataStructure();
+                toolStripStatusLabel.Text = "Sorted";
+            }
         }
         #endregion
 
@@ -188,43 +215,48 @@ namespace WindowsFormsApp1
         #region Search
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            sort();
-            string searchWord = textBoxSearch.Text;
-            int low = 0;
-            int high = pointer;
-            int mid;
-            bool search = true;
-            int comparisonValue;
-            while (search)
+            if (textBoxName.Text != "")
             {
-                if (low == high)
+                sort();
+                string searchWord = textBoxSearch.Text;
+                int low = 0;
+                int high = pointer;
+                int mid;
+                bool isSearching = true;
+                int comparisonValue;
+                while (isSearching)
                 {
-                    search = false;
-                    MessageBox.Show("Not found");
-                }
-                else
-                {
-                    mid = (low + high) / 2;
-                    comparisonValue = String.Compare(searchWord, array[mid, 0], StringComparison.OrdinalIgnoreCase);
-                    if (comparisonValue == 0)
+                    if (low == high)
                     {
-                        // Word is found
-                        displayInformation(mid);
-                        search = false;
-                    }
-                    else if (comparisonValue < 0)
-                    {
-                        // Word is on the left side
-                        high = mid;
+                        isSearching = false;
+                        //MessageBox.Show("Not found");
+                        toolStripStatusLabel.Text = searchWord + " not found";
                     }
                     else
                     {
-                        // Word is on the right side
-                        low = mid;
+                        mid = (low + high) / 2;
+                        comparisonValue = String.Compare(searchWord, array[mid, 0], StringComparison.OrdinalIgnoreCase);
+                        if (comparisonValue == 0)
+                        {
+                            // Word is found
+                            displayInformation(mid);
+                            toolStripStatusLabel.Text = searchWord + " found";
+                            isSearching = false;
+                        }
+                        else if (comparisonValue < 0)
+                        {
+                            // Word is on the left side
+                            high = mid;
+                        }
+                        else
+                        {
+                            // Word is on the right side
+                            low = mid;
+                        }
                     }
                 }
+                textBoxSearch.Clear();
             }
-            textBoxSearch.Clear();
             textBoxSearch.Focus();
         }
         #endregion
@@ -276,11 +308,14 @@ namespace WindowsFormsApp1
             if(saveFileDialog.FileName != "")
             {
                 saveFile(fileName);
+                toolStripStatusLabel.Text = fileName + " saved";
             }
             else
             {
                 saveFile(defaultFileName);
+                toolStripStatusLabel.Text = defaultFileName + " saved";
             }
+            
         }
         private void saveFile(string saveFileName)
         {
@@ -323,11 +358,19 @@ namespace WindowsFormsApp1
             openFileDialog.Title = "Open a bin file";
             if(openFileDialog.ShowDialog() == DialogResult.OK)
             {
+
+                string openFileName = Path.GetFileName(openFileDialog.FileName);
                 openFile(openFileDialog.FileName);
+                
+                toolStripStatusLabel.Text = openFileName + " loaded";
             }
         }
         private void openFile(string openFileName)
         {
+            //toolStripStatusLabel.Text = "wow" + " more wow";
+            //Console.WriteLine(defaultFileName);
+            //Console.WriteLine("dude");
+            //toolStripStatusLabel.Text = openFileName.ToString();
             try
             {
                 using (Stream stream = File.Open(openFileName, FileMode.Open))
@@ -354,6 +397,7 @@ namespace WindowsFormsApp1
                 MessageBox.Show(ex.ToString());
             }
             updateListViewDataStructure();
+
         }
         #endregion
 
@@ -377,5 +421,14 @@ namespace WindowsFormsApp1
             textBoxName.Focus();
         }
 
+        private void textBoxName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

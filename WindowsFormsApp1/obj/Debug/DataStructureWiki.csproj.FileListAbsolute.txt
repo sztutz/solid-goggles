@@ -1,0 +1,11 @@
+E:\Cert IV Programming\Semester 2 2022\Cluster - C Sharp Two\Assessments\Assessment Task One\solid-goggles\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+E:\Cert IV Programming\Semester 2 2022\Cluster - C Sharp Two\Assessments\Assessment Task One\solid-goggles\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+E:\Cert IV Programming\Semester 2 2022\Cluster - C Sharp Two\Assessments\Assessment Task One\solid-goggles\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+E:\Cert IV Programming\Semester 2 2022\Cluster - C Sharp Two\Assessments\Assessment Task One\solid-goggles\WindowsFormsApp1\obj\Debug\DataStructureWiki.csproj.AssemblyReference.cache
+E:\Cert IV Programming\Semester 2 2022\Cluster - C Sharp Two\Assessments\Assessment Task One\solid-goggles\WindowsFormsApp1\obj\Debug\DataStructureWiki.csproj.SuggestedBindingRedirects.cache
+E:\Cert IV Programming\Semester 2 2022\Cluster - C Sharp Two\Assessments\Assessment Task One\solid-goggles\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.FormDataStructureWiki.resources
+E:\Cert IV Programming\Semester 2 2022\Cluster - C Sharp Two\Assessments\Assessment Task One\solid-goggles\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+E:\Cert IV Programming\Semester 2 2022\Cluster - C Sharp Two\Assessments\Assessment Task One\solid-goggles\WindowsFormsApp1\obj\Debug\DataStructureWiki.csproj.GenerateResource.cache
+E:\Cert IV Programming\Semester 2 2022\Cluster - C Sharp Two\Assessments\Assessment Task One\solid-goggles\WindowsFormsApp1\obj\Debug\DataStructureWiki.csproj.CoreCompileInputs.cache
+E:\Cert IV Programming\Semester 2 2022\Cluster - C Sharp Two\Assessments\Assessment Task One\solid-goggles\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+E:\Cert IV Programming\Semester 2 2022\Cluster - C Sharp Two\Assessments\Assessment Task One\solid-goggles\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
