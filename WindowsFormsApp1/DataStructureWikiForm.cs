@@ -29,7 +29,6 @@ namespace WindowsFormsApp1
         // Pointer variable points to which row, the next item should be added within the array
         private int pointer = 0;
         private string defaultFileName = "default.bin";
-        private string openFileName;
         #endregion
 
         public FormDataStructureWiki()
@@ -40,33 +39,16 @@ namespace WindowsFormsApp1
         #region Add
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            // Taking input from the text boxes
-            string name = textBoxName.Text;
-            string category = textBoxCategory.Text;
-            string structure = textBoxStructure.Text;
-            string definition = textBoxDefinition.Text;
-            // Checking if there is space in the array
-            if (pointer >= rows)
+            // Checking that input text boxes contain some information
+            // and checking that there is space in the array
+            if (checkInputfromTextBoxes() && spaceInArray())
             {
-                MessageBox.Show("The data structure list is full. Please delete a record to make space");
-                toolStripStatusLabel.Text = "Full list";
-            }
-            // All text boxes are must contain a value, for an item to be added
-            else if (string.IsNullOrEmpty(name) ||
-                     string.IsNullOrEmpty(category) ||
-                     string.IsNullOrEmpty(structure) ||
-                     string.IsNullOrEmpty(definition))
-            {
-                MessageBox.Show("All text boxes must contain a value to add a record");
-                toolStripStatusLabel.Text = string.Empty;
-            }
-            else
-            {
-                // Entering the data into the array
-                array.SetValue(name, pointer, 0);
-                array.SetValue(category, pointer, 1);
-                array.SetValue(structure, pointer, 2);
-                array.SetValue(definition, pointer, 3);
+                // Taking input from the text boxes
+                (string name, string category, string structure, string definition) = getInputFromTextBoxes();
+
+                // Adding data to the array
+                addToArray(name, category, structure, definition, pointer);
+
                 pointer++;
                 updateListViewDataStructure();
                 clearTextBoxes();
@@ -82,25 +64,26 @@ namespace WindowsFormsApp1
         {
             if (listViewDataStructure.SelectedIndices.Count == 1)
             {
-                int index = listViewDataStructure.SelectedIndices[0];
-                // Taking input from the text boxes
-                string name = textBoxName.Text;
-                string category = textBoxCategory.Text;
-                string structure = textBoxStructure.Text;
-                string definition = textBoxDefinition.Text;
-                // Entering the data in to the array
-                array.SetValue(name, index, 0);
-                array.SetValue(category, index, 1);
-                array.SetValue(structure, index, 2);
-                array.SetValue(definition, index, 3);
-
-                updateListViewDataStructure();
-                clearTextBoxes();
-                toolStripStatusLabel.Text = name + " edited";
+                if (checkInputfromTextBoxes())
+                {
+                    var result = MessageBox.Show("Do you want to edit this item?", "Edit",
+                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        int index = listViewDataStructure.SelectedIndices[0];
+                        // Taking input from the text boxes
+                        (string name, string category, string structure, string definition) = getInputFromTextBoxes();
+                        // Adding data to the array
+                        addToArray(name, category, structure, definition, index);
+                        updateListViewDataStructure();
+                        clearTextBoxes();
+                        toolStripStatusLabel.Text = name + " edited";
+                    }
+                }
             }
             else
             {
-                MessageBox.Show("There is no record selected to edit");
+                toolStripStatusLabel.Text = "There is no record selected to edit";
             }
         }
         #endregion
@@ -215,49 +198,57 @@ namespace WindowsFormsApp1
         #region Search
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            if (textBoxName.Text != "")
+            if (listViewDataStructure.SelectedIndices.Count == 1)
             {
-                sort();
-                string searchWord = textBoxSearch.Text;
-                int low = 0;
-                int high = pointer;
-                int mid;
-                bool isSearching = true;
-                int comparisonValue;
-                while (isSearching)
+                if (textBoxSearch.Text != "")
                 {
-                    if (low == high)
+                    sort();
+                    string searchWord = textBoxSearch.Text;
+                    int low = 0;
+                    int high = pointer;
+                    int mid;
+                    bool isSearching = true;
+                    int comparisonValue;
+                    while (isSearching)
                     {
-                        isSearching = false;
-                        //MessageBox.Show("Not found");
-                        toolStripStatusLabel.Text = searchWord + " not found";
-                    }
-                    else
-                    {
-                        mid = (low + high) / 2;
-                        comparisonValue = String.Compare(searchWord, array[mid, 0], StringComparison.OrdinalIgnoreCase);
-                        if (comparisonValue == 0)
+                        if (low == high)
                         {
-                            // Word is found
-                            displayInformation(mid);
-                            toolStripStatusLabel.Text = searchWord + " found";
                             isSearching = false;
-                        }
-                        else if (comparisonValue < 0)
-                        {
-                            // Word is on the left side
-                            high = mid;
+                            //MessageBox.Show("Not found");
+                            toolStripStatusLabel.Text = searchWord + " not found";
                         }
                         else
                         {
-                            // Word is on the right side
-                            low = mid;
+                            mid = (low + high) / 2;
+                            comparisonValue = String.Compare(searchWord, array[mid, 0], StringComparison.OrdinalIgnoreCase);
+                            if (comparisonValue == 0)
+                            {
+                                // Word is found
+                                displayInformation(mid);
+                                toolStripStatusLabel.Text = searchWord + " found";
+                                isSearching = false;
+                                //listViewDataStructure.Items[mid].Selected = true;
+                            }
+                            else if (comparisonValue < 0)
+                            {
+                                // Word is on the left side
+                                high = mid;
+                            }
+                            else
+                            {
+                                // Word is on the right side
+                                low = mid;
+                            }
                         }
                     }
+                    textBoxSearch.Clear();
                 }
-                textBoxSearch.Clear();
+                textBoxSearch.Focus();
             }
-            textBoxSearch.Focus();
+            else
+            {
+                toolStripStatusLabel.Text = "No records to search";
+            }
         }
         #endregion
 
@@ -305,7 +296,7 @@ namespace WindowsFormsApp1
             saveFileDialog.DefaultExt = "bin";
             saveFileDialog.ShowDialog();
             string fileName = saveFileDialog.FileName;
-            if(saveFileDialog.FileName != "")
+            if (saveFileDialog.FileName != "")
             {
                 saveFile(fileName);
                 toolStripStatusLabel.Text = fileName + " saved";
@@ -315,7 +306,7 @@ namespace WindowsFormsApp1
                 saveFile(defaultFileName);
                 toolStripStatusLabel.Text = defaultFileName + " saved";
             }
-            
+
         }
         private void saveFile(string saveFileName)
         {
@@ -339,7 +330,7 @@ namespace WindowsFormsApp1
                     }
                 }
             }
-            catch(IOException ex)
+            catch (IOException ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -356,12 +347,12 @@ namespace WindowsFormsApp1
             openFileDialog.InitialDirectory = Application.StartupPath;
             openFileDialog.Filter = "bin files|*.bin";
             openFileDialog.Title = "Open a bin file";
-            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-
+                clearTextBoxes();
                 string openFileName = Path.GetFileName(openFileDialog.FileName);
                 openFile(openFileDialog.FileName);
-                
+
                 toolStripStatusLabel.Text = openFileName + " loaded";
             }
         }
@@ -400,9 +391,14 @@ namespace WindowsFormsApp1
 
         }
         #endregion
-
+        private void addToArray(string name, string category, string structure, string definition, int row)
+        {
+            array.SetValue(name, row, 0);
+            array.SetValue(category, row, 1);
+            array.SetValue(structure, row, 2);
+            array.SetValue(definition, row, 3);
+        }
         // Swaps item in array at row with item in array at row + 1
-        #region Swap
         private void swap(int row)
         {
             string temp;
@@ -413,22 +409,49 @@ namespace WindowsFormsApp1
                 array[row, k] = temp;
             }
         }
-        #endregion
-
+        // Gets the user input from the text boxes {name, category, structure, definition}
+        private (string name, string category, string structure, string definition) getInputFromTextBoxes()
+        {
+                string name = textBoxName.Text;
+                string category = textBoxCategory.Text;
+                string structure = textBoxStructure.Text;
+                string definition = textBoxDefinition.Text;
+                return (name, category, structure, definition);
+        }
+        // Checks that there is input in the text boxes {name, category, structure, definition}
+        private bool checkInputfromTextBoxes()
+        {
+            if (string.IsNullOrEmpty(textBoxName.Text) ||
+                string.IsNullOrEmpty(textBoxCategory.Text) ||
+                string.IsNullOrEmpty(textBoxStructure.Text) ||
+                string.IsNullOrEmpty(textBoxDefinition.Text))
+            {
+                MessageBox.Show("Name, Category, Structure, and Definition are required to add or edit a record");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        // Checks if there is space in the array
+        private bool spaceInArray()
+        {
+            if (pointer >= rows)
+            {
+                MessageBox.Show("The data structure list is full. Please delete a record to make space");
+                toolStripStatusLabel.Text = "Full list";
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         private void textBoxName_DoubleClick(object sender, EventArgs e)
         {
             clearTextBoxes();
             textBoxName.Focus();
-        }
-
-        private void textBoxName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
