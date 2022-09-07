@@ -17,7 +17,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Application = System.Windows.Forms.Application;
 using ToolTip = System.Windows.Forms.ToolTip;
 
-namespace WindowsFormsApp1
+namespace DataStructureWiki
 {
     public partial class FormDataStructureWiki : Form
     {
