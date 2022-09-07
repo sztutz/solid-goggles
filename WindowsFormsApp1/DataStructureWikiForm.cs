@@ -198,7 +198,7 @@ namespace WindowsFormsApp1
         #region Search
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            if (listViewDataStructure.SelectedIndices.Count == 1)
+            if (pointer > 1)
             {
                 if (textBoxSearch.Text != "")
                 {
@@ -227,7 +227,6 @@ namespace WindowsFormsApp1
                                 displayInformation(mid);
                                 toolStripStatusLabel.Text = searchWord + " found";
                                 isSearching = false;
-                                //listViewDataStructure.Items[mid].Selected = true;
                             }
                             else if (comparisonValue < 0)
                             {
@@ -237,7 +236,7 @@ namespace WindowsFormsApp1
                             else
                             {
                                 // Word is on the right side
-                                low = mid;
+                                low = mid + 1;
                             }
                         }
                     }

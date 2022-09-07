@@ -154,7 +154,7 @@
             this.textBoxDefinition.Location = new System.Drawing.Point(13, 145);
             this.textBoxDefinition.Multiline = true;
             this.textBoxDefinition.Name = "textBoxDefinition";
-            this.textBoxDefinition.Size = new System.Drawing.Size(167, 53);
+            this.textBoxDefinition.Size = new System.Drawing.Size(167, 123);
             this.textBoxDefinition.TabIndex = 3;
             // 
             // labelDefinition
@@ -260,7 +260,7 @@
             // 
             this.labelSearch.AutoSize = true;
             this.labelSearch.BackColor = System.Drawing.Color.LightPink;
-            this.labelSearch.Location = new System.Drawing.Point(10, 202);
+            this.labelSearch.Location = new System.Drawing.Point(10, 271);
             this.labelSearch.Name = "labelSearch";
             this.labelSearch.Size = new System.Drawing.Size(75, 13);
             this.labelSearch.TabIndex = 11;
@@ -268,7 +268,7 @@
             // 
             // textBoxSearch
             // 
-            this.textBoxSearch.Location = new System.Drawing.Point(13, 218);
+            this.textBoxSearch.Location = new System.Drawing.Point(13, 287);
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.Size = new System.Drawing.Size(167, 20);
             this.textBoxSearch.TabIndex = 10;
@@ -279,7 +279,7 @@
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel,
             this.toolStripStatusLabel1});
-            this.statusStrip.Location = new System.Drawing.Point(0, 278);
+            this.statusStrip.Location = new System.Drawing.Point(0, 339);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(569, 22);
             this.statusStrip.TabIndex = 17;
@@ -325,7 +325,7 @@
             this.groupBoxTextInputs.Controls.Add(this.textBoxStructure);
             this.groupBoxTextInputs.Location = new System.Drawing.Point(15, 7);
             this.groupBoxTextInputs.Name = "groupBoxTextInputs";
-            this.groupBoxTextInputs.Size = new System.Drawing.Size(195, 258);
+            this.groupBoxTextInputs.Size = new System.Drawing.Size(195, 318);
             this.groupBoxTextInputs.TabIndex = 19;
             this.groupBoxTextInputs.TabStop = false;
             // 
@@ -334,7 +334,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkTurquoise;
-            this.ClientSize = new System.Drawing.Size(569, 300);
+            this.ClientSize = new System.Drawing.Size(569, 361);
             this.Controls.Add(this.groupBoxTextInputs);
             this.Controls.Add(this.groupBoxButtons);
             this.Controls.Add(this.statusStrip);
